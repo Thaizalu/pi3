@@ -1,0 +1,244 @@
+<div class="p-fluid cadastro-paciente">
+    <h2>Cadastro de pacientes</h2>
+
+    <div class="p-field p-grid">
+        <label for="nome" class="p-col-12 p-md-2">Nome</label>
+        <div class="p-col-12 p-md-10">
+            <input id="nome" pInputText [(ngModel)]="paciente.nome" placeholder="Nome completo" class="p-inputtext" />
+        </div>
+    </div>
+
+    <p-accordion>
+        <p-accordionTab header="Endereço">
+            <div class="p-field p-grid">
+                <label for="cep" class="p-col-12 p-md-2">CEP</label>
+                <div class="p-col-12 p-md-10">
+                    <input pInputMask id="cep" [(ngModel)]="paciente.endereco.cep" mask="99999-999"
+                        placeholder="12345-678" class="p-inputtext" (blur)="buscarEndereco()" />
+                </div>
+            </div>
+
+            <div class="p-field p-grid">
+                <label for="logradouro" class="p-col-12 p-md-2">Logradouro</label>
+                <div class="p-col-12 p-md-10">
+                    <input id="logradouro" pInputText [(ngModel)]="paciente.endereco.rua" placeholder="Rua"
+                        class="p-inputtext" disabled />
+                </div>
+            </div>
+
+            <div class="p-field p-grid">
+                <label for="bairro" class="p-col-12 p-md-2">Bairro</label>
+                <div class="p-col-12 p-md-10">
+                    <input id="bairro" pInputText [(ngModel)]="paciente.endereco.bairro" placeholder="Bairro"
+                        class="p-inputtext" disabled />
+                </div>
+            </div>
+
+            <div class="p-field p-grid">
+                <label for="cidade" class="p-col-12 p-md-2">Cidade</label>
+                <div class="p-col-12 p-md-10">
+                    <input id="cidade" pInputText [(ngModel)]="paciente.endereco.cidade" placeholder="Cidade"
+                        class="p-inputtext" disabled />
+                </div>
+            </div>
+
+            <div class="p-field p-grid">
+                <label for="estado" class="p-col-12 p-md-2">Estado</label>
+                <div class="p-col-12 p-md-10">
+                    <input id="estado" pInputText [(ngModel)]="paciente.endereco.estado" placeholder="Estado"
+                        class="p-inputtext" disabled />
+                </div>
+            </div>
+
+            <div class="p-field p-grid">
+                <label for="numero" class="p-col-12 p-md-2">Número</label>
+                <div class="p-col-12 p-md-10">
+                    <input id="numero" pInputText [(ngModel)]="paciente.endereco.numero" placeholder="Número"
+                        class="p-inputtext" />
+                </div>
+            </div>
+        </p-accordionTab>
+    </p-accordion>
+
+    <div class="p-field p-grid">
+        <label for="idade" class="p-col-12 p-md-2">Idade</label>
+        <div class="p-col-12 p-md-10">
+            <input id="idade" pInputText [(ngModel)]="paciente.idade" placeholder="Idade" class="p-inputtext" />
+        </div>
+    </div>
+
+    <div class="p-field p-grid">
+        <label for="dataNascimento" class="p-col-12 p-md-2">Data de Nascimento</label>
+        <div class="p-col-12 p-md-10">
+            <p-calendar id="dataNascimento" [(ngModel)]="paciente.nascimento" dateFormat="dd/mm/yy"
+                placeholder="DD/MM/AAAA" class="p-inputtext"></p-calendar>
+        </div>
+    </div>
+
+    <div class="p-field p-grid">
+        <label for="telefone" class="p-col-12 p-md-2">Telefone</label>
+        <div class="p-col-12 p-md-10">
+            <p-inputMask id="telefone" [(ngModel)]="paciente.telefone" mask="(99) 99999-9999"
+                placeholder="(12) 34567-8910" class="p-inputtext"></p-inputMask>
+        </div>
+    </div>
+
+    <div class="p-field p-grid">
+        <label for="rg" class="p-col-12 p-md-2">RG</label>
+        <div class="p-col-12 p-md-10">
+            <p-inputMask id="rg" [(ngModel)]="paciente.rg" mask="99.999.999-9" placeholder="12.345.678-9"
+                class="p-inputtext"></p-inputMask>
+        </div>
+    </div>
+
+    <div class="p-field p-grid">
+        <label for="cpf" class="p-col-12 p-md-2">CPF</label>
+        <div class="p-col-12 p-md-10">
+            <p-inputMask id="cpf" [(ngModel)]="paciente.cpf" mask="999.999.999-99" placeholder="123.456.789-00"
+                class="p-inputtext"></p-inputMask>
+        </div>
+    </div>
+
+    <div class="p-field p-grid">
+        <label for="localTrabalho" class="p-col-12 p-md-2">Local de trabalho</label>
+        <div class="p-col-12 p-md-10">
+            <input id="localTrabalho" pInputText [(ngModel)]="paciente.localTrabalho" placeholder="Local de Trabalho"
+                class="p-inputtext" />
+        </div>
+    </div>
+
+    <div class="p-field p-grid">
+        <label for="escolaridade" class="p-col-12 p-md-2">Grau de instrução</label>
+        <div class="p-col-12 p-md-10">
+            <p-dropdown [options]="grausInstrucaoOptions" [(ngModel)]="paciente.escolaridade"
+                placeholder="Selecione o Grau de Instrução" class="p-inputtext"></p-dropdown>
+        </div>
+    </div>
+
+    <div class="p-field p-grid">
+        <label for="rendaMensal" class="p-col-12 p-md-2">Renda Mensal</label>
+        <div class="p-col-12 p-md-10">
+            <input id="rendaMensal" type="text" [(ngModel)]="paciente.rendaMensal" class="p-inputtext"
+                placeholder="R$ 0,00" />
+        </div>
+    </div>
+
+    <div class="p-field p-grid">
+        <label for="estadoCivil" class="p-col-12 p-md-2">Estado civil</label>
+        <div class="p-col-12 p-md-10">
+            <p-dropdown [options]="estadoCivilOptions" [(ngModel)]="paciente.estadoCivil"
+                placeholder="Selecione o estado civil" class="p-inputtext"></p-dropdown>
+        </div>
+    </div>
+
+    <div class="p-field p-grid">
+        <label for="tipoConstrucao" class="p-col-12 p-md-2">Moradia</label>
+        <div class="p-col-12 p-md-10">
+            <p-dropdown [options]="tipoConstrucaoOptions" [(ngModel)]="paciente.tipoConstrucao"
+                placeholder="Selecione o tipo de moradia" class="p-inputtext"
+                (onChange)="onTipoConstrucaoChange($event)"></p-dropdown>
+        </div>
+    </div>
+
+    <!-- Input para o valor do aluguel -->
+    <div *ngIf="mostrarValorAluguel" class="p-field p-grid">
+        <label for="valorAluguel" class="p-col-12 p-md-2">Valor Aluguel</label>
+        <div class="p-col-12 p-md-10">
+            <input id="valorAluguel" pInputText [(ngModel)]="paciente.valorAluguel" placeholder="R$ 0,00"
+                class="p-inputtext" />
+        </div>
+    </div>
+
+    <!-- Input para o valor do financiamento -->
+    <div *ngIf="mostrarValorFinanciamento" class="p-field p-grid">
+        <label for="valorFinanciamento" class="p-col-12 p-md-2">Valor Financiamento</label>
+        <div class="p-col-12 p-md-10">
+            <input id="valorFinanciamento" pInputText [(ngModel)]="paciente.valorFinanciamento" placeholder="R$ 0,00"
+                class="p-inputtext" />
+        </div>
+    </div>
+
+    <div class="p-field p-grid">
+        <label for="auxilioSolicitado" class="p-col-12 p-md-2">Auxílio solicitado</label>
+        <div class="p-col-12 p-md-10">
+            <p-multiSelect [options]="tipoAuxilioOptions" [(ngModel)]="paciente.auxilioSolicitado"
+                (onChange)="exibirCampoOutro()" placeholder="Selecione o auxílio" class="p-inputtext"></p-multiSelect>
+        </div>
+    </div>
+
+    <div *ngIf="mostrarOutro" class="p-field p-grid">
+        <label for="outroAuxilio" class="p-col-12 p-md-2">Outro Auxílio</label>
+        <div class="p-col-12 p-md-10">
+            <input id="outroAuxilio" pInputText [(ngModel)]="paciente.outroAuxilio"
+                placeholder="Especifique o outro auxílio" class="p-inputtext" />
+        </div>
+    </div>
+
+    <div class="p-field p-grid">
+        <label for="diagnostico" class="p-col-12 p-md-2">Diagnóstico</label>
+        <div class="p-col-12 p-md-10">
+            <textarea id="diagnostico" [(ngModel)]="paciente.diagnostico" placeholder="Informe o diagnóstico"
+                class="p-inputtextarea" rows="5"></textarea>
+        </div>
+    </div>
+
+    <div class="p-field p-grid">
+        <label for="providencia" class="p-col-12 p-md-2">Providência</label>
+        <div class="p-col-12 p-md-10">
+            <textarea id="providencia" [(ngModel)]="paciente.providencia" placeholder="Informe a providência"
+                class="p-inputtextarea" rows="5"></textarea>
+        </div>
+    </div>
+
+    <div class="p-field p-grid">
+        <label for="inss" class="p-col-12 p-md-2">INSS</label>
+        <div class="p-col-12 p-md-10">
+            <p-checkbox id="inss" [(ngModel)]="paciente.saude.inss" binary="true"></p-checkbox>
+        </div>
+    </div>
+
+    <div class="p-field p-grid">
+        <label for="funeral" class="p-col-12 p-md-2">Funeral</label>
+        <div class="p-col-12 p-md-10">
+            <p-checkbox id="funeral" [(ngModel)]="paciente.saude.funeral" binary="true"></p-checkbox>
+        </div>
+    </div>
+
+    <div class="p-field p-grid">
+        <label for="outra" class="p-col-12 p-md-2">Outra</label>
+        <div class="p-col-12 p-md-10">
+            <p-checkbox id="outra" [(ngModel)]="paciente.saude.outra" binary="true"
+                (onChange)="exibirCampoOutroSaude()"></p-checkbox>
+        </div>
+    </div>
+
+    <div *ngIf="mostrarOutroSaude" class="p-field p-grid">
+        <label for="outroDescricao" class="p-col-12 p-md-2">Outro (Descrição)</label>
+        <div class="p-col-12 p-md-10">
+            <input id="outroDescricao" pInputText [(ngModel)]="paciente.saude.descricao" placeholder="Especifique outro"
+                class="p-inputtext" />
+        </div>
+    </div>
+
+    <div class="p-field p-grid">
+        <label for="fileUpload" class="p-col-12 p-md-2">Anexar Documento</label>
+        <div class="p-col-12 p-md-10">
+          <input type="file" #fileInput (change)="onFileSelect($event)" accept=".pdf,.jpeg,.jpg" style="display:none;" />
+          <button type="button" pButton label="Selecionar Arquivo" icon="pi pi-upload" class="p-button-primary"
+            (click)="triggerFileUpload()">
+          </button>
+          <span *ngIf="fileName" style="margin-left: 10px;">
+            Arquivo anexado: {{ fileName }}
+          </span>
+        </div>
+      </div>
+      
+
+    <!-- Botão de submissão -->
+    <div class="p-field p-grid">
+        <div class="p-col-12 p-md-10 p-offset-md-2">
+            <button pButton type="submit" label="Cadastrar" class="p-mt-2 p-button-rounded"
+                (click)="salvarPaciente()"></button>
+        </div>
+    </div>
+</div>
